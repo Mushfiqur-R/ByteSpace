@@ -1,26 +1,72 @@
 @import "tailwindcss";
 
+@theme inline {
+  --color-background: #ffffff;
+  --color-foreground: #171717;
+  /*
+   * Fonts ----------------------------------------------------------------
+   * app/layout.tsx loads the fonts with `next/font`; that puts the real font
+   * stacks on <html> as runtime variables:
+   *   --font-geist-sans      Geist Sans      --font-geist-mono   Geist Mono
+   *   --font-google-poppins  Poppins         --font-local-satoshi Satoshi
+   *
+   * The Tailwind keys below intentionally use DIFFERENT names than those
+   * runtime variables, so nothing ever references itself, and every stack
+   * ends with generics so text can never fall back to a serif default.
+   *
+   *   font-poppins -> headings / course titles      (Poppins 600)
+   *   font-satoshi -> body, labels, buttons, metadata (Satoshi 400 + 500)
+   *   font-sans    -> Geist Sans (project default, unchanged)
+   *   font-mono    -> Geist Mono
+   *
+   * `var(--font-local-satoshi, "Satoshi")` keeps working before and after the
+   * local Satoshi files are added (see app/layout.tsx + app/fonts/README.md).
+   */
+  --font-sans: var(--font-geist-sans, "Geist"), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono, "Geist Mono"), ui-monospace, monospace;
+  --font-poppins: var(--font-google-poppins, "Poppins"), ui-sans-serif, system-ui, sans-serif;
+  --font-satoshi: var(--font-local-satoshi, "Satoshi"), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  /* Brand wordmark ("ByteSpace"). Local font, same mechanism as Satoshi. */
+  --font-clash-display: var(--font-local-clash-display, "Clash Display"), ui-sans-serif, system-ui, sans-serif;
+  /* Brand tokens */
+  --color-brand-blue: #003BE2;
+  --color-brand-lime: #D4FB20;
+  --color-brand-white: #F5F5F6;
+  --color-shuttle-gray-950: #242528;
+  --color-shuttle-gray-200: #CED0D3;
+  /* Light gray band used by the partner logo strip (and courseCard chips) */
+  --color-shuttle-gray-50: #F5F6F7;
+  --color-electric-lime-400: #D4FB20;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+/*
+ * Hero/Navbar grid background.
+ * Applied to the single shared wrapper in page.tsx that contains both
+ * the Navbar and the HeroSection, creating one continuous grid from
+ * the very top of the page.
+ *
+ * Grid size: 64px matches the Figma visual density.
+ * Line opacity: 0.12 — subtle but visible against the blue.
+ */
+.hero-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.12) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+/* Prevent horizontal overflow globally */
+html,
+body {
+  overflow-x: hidden;
 }
