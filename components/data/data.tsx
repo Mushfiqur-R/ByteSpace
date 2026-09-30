@@ -10,7 +10,6 @@ import type { HappyStudentStats, HappyStudentAvatar } from "../home/HappyStudent
 
 const cls = "h-9 w-9";
 
-/** Asset root shared by the Figma Make home sections. */
 const homeAssets = "/assets/home";
 
 export const data: Category[] = [
@@ -47,18 +46,13 @@ export const HAPPY_STUDENT_ASSETS = {
   ],
 } as const;
 
-/** One entry per avatar, so both sections show the same faces. */
+
 const happyStudents: HappyStudentAvatar[] = HAPPY_STUDENT_ASSETS.avatars.map((avatarUrl, index) => ({
   id: `happy-${index + 1}`,
   name: `Student ${index + 1}`,
   avatarUrl,
 }));
 
-/**
- * Stats for the "Happy Students" card: 4.5 (240), seven avatars and the "2K+"
- * badge from the CoursesShowcase Figma design. The hero renders the very same
- * card, so there is one source of truth for both sections.
- */
 export const HAPPY_STATS: HappyStudentStats = {
   rating: 4.5,
   reviewCount: 240,
@@ -138,8 +132,6 @@ export const COURSES: Course[] = [
     imageAlt: "Learn Figma from Basic course cover",
     difficultyIcon: COURSE_CARD_ASSETS.difficultyIcon,
     ratingIcon: COURSE_CARD_ASSETS.ratingIcon,
-    // moreAvatarUrl: COURSE_CARD_ASSETS.moreAvatar,
-    /* 30 learners -> 4 avatars + a "+26" badge, matching the Figma card. */
     learners: makeLearners("c1", 30, COURSE_CARD_ASSETS.learnerAvatars),
   },
   {
@@ -182,7 +174,7 @@ export const COURSES: Course[] = [
   },
 ];
 
-/* Testimonials (community section) */
+/* Testimonials */
 
 export const TESTIMONIALS: Testimonial[] = [
   {
@@ -206,7 +198,7 @@ export const TESTIMONIALS: Testimonial[] = [
 ];
 
 
-/* Courses page (`/courses`) — chips row plus the 15 catalogue cards. */
+/* Courses page  */
 
 const COURSE_PAGE_CATEGORY_IDS = [
   "featured",
@@ -220,7 +212,7 @@ const COURSE_PAGE_CATEGORY_IDS = [
   "cooking",
 ] as const;
 
-/** Chips row above the `/courses` grid, resolved from `COURSE_CATEGORIES`. */
+
 export const COURSE_PAGE_CATEGORIES: CourseCategory[] = COURSE_PAGE_CATEGORY_IDS.map(
   (id) => COURSE_CATEGORIES.find((category) => category.id === id) ?? { id, label: id },
 );
@@ -244,7 +236,6 @@ const COURSE_PAGE_COVERS = [
   `${homeAssets}/b8b88.png`,
 ] as const;
 
-/** Card fields that differ per catalogue entry (everything else is shared). */
 type CoursePageSeed = Pick<
   Course,
   "title" | "categoryId" | "price" | "difficulty" | "rating" | "lessons" | "duration" | "comments"
@@ -268,7 +259,6 @@ const COURSE_PAGE_SEED: CoursePageSeed[] = [
   { title: "Cooking: Everyday Gourmet Skills", categoryId: "cooking", price: "$19", difficulty: "Beginner", rating: 4.8, lessons: 16, duration: "2 hours 08 mins", comments: 47 },
 ];
 
-/** The 15 mock cards rendered by the `/courses` grid. */
 export const COURSE_PAGE_COURSES: Course[] = COURSE_PAGE_SEED.map((seed, index) => ({
   ...seed,
   id: `catalog-${index + 1}`,

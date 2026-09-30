@@ -1,7 +1,6 @@
 import TestimonialCard from "@/components/home/TestimonialCard";
 import { TESTIMONIALS } from "@/components/data/data";
 
-/** Figma exports the section decorations as standalone SVGs (see `img` below). */
 const assetPathPrefix = "/assets/home";
 
 export default function Testimonials() {

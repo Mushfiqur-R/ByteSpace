@@ -9,13 +9,6 @@ type Props = {
   className?: string;
 };
 
-/**
- * Renders a fixed-size (Figma) composition and scales it down to fit the
- * available width, so the absolutely positioned layers inside keep their exact
- * Figma geometry on every breakpoint.
- *
- * Client component: it measures its own width with ResizeObserver.
- */
 export default function ScaledStage({ width, height, children, className = "" }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const [scale, setScale] = useState(1);

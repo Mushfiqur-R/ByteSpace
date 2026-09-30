@@ -9,17 +9,13 @@ import type { CourseCategory } from "@/components/interfaces";
 
 export interface CoursesHeroProps extends HTMLAttributes<HTMLElement> {
   heading?: string;
-  /** Options of the lime scope dropdown, e.g. `{ id, label }` pairs. */
   scopes?: CourseCategory[];
 }
 
-/** Label shown on the dropdown before the visitor picks a scope. */
+
 const ALL_SCOPES = "Courses";
 
-/**
- * Blue hero of `/courses`. The blue band and the grid pattern come from the
- * wrapper in `app/courses/page.tsx`, exactly like the home hero.
- */
+
 export const CoursesHero = ({
   heading = "Find Your Next Course",
   scopes = COURSE_PAGE_CATEGORIES,

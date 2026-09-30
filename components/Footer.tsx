@@ -24,7 +24,6 @@ export interface FooterProps extends React.HTMLAttributes<HTMLElement> {
   onSubscribe?: (email: string) => void;
   /** Called when the logo is clicked */
   onLogoClick?: () => void;
-  /** Text on the lime button (default "Search", as in the design) */
   subscribeLabel?: string;
 }
 

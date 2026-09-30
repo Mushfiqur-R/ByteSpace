@@ -10,10 +10,7 @@ export const metadata: Metadata = {
     "Browse ByteSpace courses across design, marketing, music, cooking and more. Filter by level and category to find your next course.",
 };
 
-/**
- * `/courses` — the catalogue page. The Navbar and the hero share one blue grid
- * band, exactly like the home page; the footer comes from `app/layout.tsx`.
- */
+
 export default function CoursesPage() {
   return (
     <main className="w-full">

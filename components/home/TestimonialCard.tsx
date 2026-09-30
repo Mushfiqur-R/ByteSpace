@@ -1,9 +1,6 @@
 import type { Testimonial } from "@/components/interfaces";
 
-/**
- * Single testimonial. Data (names, roles, quotes, avatars) lives in
- * `components/data/data.tsx` — nothing here is hardcoded.
- */
+
 export default function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
   return (
     <article className="flex h-full flex-col items-start gap-6 rounded-3xl bg-white p-6">

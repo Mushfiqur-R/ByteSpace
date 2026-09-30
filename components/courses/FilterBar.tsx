@@ -30,17 +30,10 @@ const PILL =
   "flex h-12 shrink-0 cursor-pointer items-center justify-center gap-1 rounded-[24px] border border-[#CED0D3] bg-white px-4 py-3 font-satoshi text-[16px] font-medium leading-[120%] text-[#4B4C53] transition-colors";
 
 export interface FilterBarProps extends HTMLAttributes<HTMLElement> {
-  /** Id of the pill whose panel is open. Omit for uncontrolled behaviour. */
   openId?: string | null;
   onOpenChange?: (id: string | null) => void;
 }
 
-/**
- * Courses catalogue filter bar.
- *
- * The pills only toggle their own open/closed state for now: the dropdown
- * panels are added later, so the markup already exposes `aria-expanded`.
- */
 export const FilterBar = ({
   openId,
   onOpenChange,

@@ -11,16 +11,12 @@ const PAGE_NUMBER =
   "cursor-pointer font-poppins text-[20px] font-semibold leading-[28px] tracking-[-0.01em] transition-colors";
 
 export interface PaginationProps extends HTMLAttributes<HTMLElement> {
-  /**
-   * Pages that actually hold courses. The strip renders exactly this many
-   * numbers, so a single page of results shows only "1".
-   */
   totalPages: number;
   currentPage: number;
   onPageChange: (page: number) => void;
 }
 
-/** Numbered pagination strip under the courses grid. */
+
 export const Pagination = ({
   totalPages,
   currentPage,
