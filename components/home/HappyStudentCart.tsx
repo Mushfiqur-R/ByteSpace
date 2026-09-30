@@ -1,5 +1,4 @@
-import * as React from "react";
-import StarIcon from "../Icons/home/StarIcon";
+import type { HTMLAttributes } from "react";
 
 /** One student avatar. */
 export interface HappyStudentAvatar {
@@ -13,9 +12,13 @@ export interface HappyStudentStats {
   reviewCount: number;
   studentCount: number;
   students?: HappyStudentAvatar[];
+  /** Star drawn next to the rating, e.g. `/assets/home/eafcb.svg`. */
+  starIcon?: string;
+  /** Face used by the "+N" badge, e.g. `/assets/home/bf7f4.svg`. */
+  moreAvatarUrl?: string;
 }
 
-export interface HappyStudentCardProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface HappyStudentCardProps extends HTMLAttributes<HTMLDivElement> {
   stats: HappyStudentStats;
   /** Card heading (default "Happy Students") */
   title?: string;
@@ -28,26 +31,27 @@ const compactNumber = new Intl.NumberFormat("en", {
   maximumFractionDigits: 1,
 });
 
+/**
+ * "Happy Students" card. Its visuals follow the CoursesShowcase design, so the
+ * hero and the showcase render the exact same card from `data.tsx` instead of
+ * duplicating the markup. Width is left to the caller: the showcase pins it to
+ * Figma's 258px, the hero lets it size to its content.
+ */
 export const HappyStudentCard = ({
   stats,
   title = "Happy Students",
-  className,
+  className = "",
   ...props
 }: HappyStudentCardProps) => {
-  const { rating, reviewCount, studentCount, students = [] } = stats;
+  const { rating, reviewCount, studentCount, students = [], starIcon, moreAvatarUrl } = stats;
 
   return (
-    <div
-      className={`flex w-fit flex-col justify-center gap-2 rounded-2xl bg-white p-4 backdrop-blur-md ${className ?? ""}`}
-      {...props}
-    >
-      <div className="flex flex-col">
-        <p className="text-label-m text-shuttle-gray-950">{title}</p>
-        <p className="flex items-center gap-1 text-body-xs text-shuttle-gray-950">
-          <span>
-            {rating.toFixed(1)} ({reviewCount})
-          </span>
-          <StarIcon filled width={16} height={16} className="text-electric-lime-400" />
+    <div className={`flex flex-col gap-2 rounded-2xl bg-white p-4 backdrop-blur-[10px] ${className}`} {...props}>
+      <div>
+        <p className="font-satoshi text-[16px] leading-[24px] font-medium text-ink">{title}</p>
+        <p className="flex items-center font-satoshi text-[10px] leading-[1.5] text-[#82868e]">
+          <span className="font-bold text-ink">{rating.toFixed(1)}&nbsp;</span>({reviewCount})
+          {starIcon ? <img alt="" src={starIcon} className="ml-[1.4px] h-[12.6px] w-[13.2px]" /> : null}
         </p>
       </div>
 
@@ -59,15 +63,22 @@ export const HappyStudentCard = ({
               src={avatarUrl}
               alt={name}
               loading="lazy"
-              className="size-10.75 shrink-0 rounded-full object-cover"
+              className="size-[43px] shrink-0 rounded-full object-cover"
             />
           ) : (
-            <span key={id} className="size-10.75 shrink-0 rounded-full bg-shuttle-gray-200" />
+            <span key={id} className="size-[43px] shrink-0 rounded-full bg-shuttle-gray-200" />
           ),
         )}
-        <span className="flex size-10.75 shrink-0 items-center justify-center rounded-full bg-electric-lime-400 text-xs font-bold leading-normal text-shuttle-gray-950">
-          {compactNumber.format(studentCount)}+
-        </span>
+        <div className="relative size-[43px] shrink-0">
+          {moreAvatarUrl ? (
+            <img alt="" src={moreAvatarUrl} className="size-[43px]" />
+          ) : (
+            <span className="block size-[43px] rounded-full bg-electric-lime-400" />
+          )}
+          <span className="absolute top-[13px] left-3 font-satoshi text-[12px] leading-[1.5] font-bold text-ink">
+            {compactNumber.format(studentCount)}+
+          </span>
+        </div>
       </div>
     </div>
   );

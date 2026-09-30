@@ -11,11 +11,7 @@ export interface CourseCategoryTabsProps
   onSelect: (id: string) => void;
 }
 
-/**
- * How many chips stay visible while the strip is collapsed.
- * Phones keep the strip to one short block; wider screens follow the design,
- * where the last row ends with the "+ More" button.
- */
+
 const MOBILE_VISIBLE = 6;
 const DESKTOP_VISIBLE = 18;
 
@@ -31,10 +27,7 @@ export const CourseCategoryTabs = ({
 }: CourseCategoryTabsProps) => {
   const [isExpanded, setIsExpanded] = React.useState(false);
 
-  /**
-   * The extra chips are hidden with responsive classes (instead of slicing the
-   * array) so the collapse point can differ per breakpoint without JS.
-   */
+
   const visibility = (index: number) => {
     if (isExpanded) return "";
     if (index >= DESKTOP_VISIBLE) return "hidden";

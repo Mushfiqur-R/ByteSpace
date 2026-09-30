@@ -3,30 +3,10 @@
 @theme inline {
   --color-background: #ffffff;
   --color-foreground: #171717;
-  /*
-   * Fonts ----------------------------------------------------------------
-   * app/layout.tsx loads the fonts with `next/font`; that puts the real font
-   * stacks on <html> as runtime variables:
-   *   --font-geist-sans      Geist Sans      --font-geist-mono   Geist Mono
-   *   --font-google-poppins  Poppins         --font-local-satoshi Satoshi
-   *
-   * The Tailwind keys below intentionally use DIFFERENT names than those
-   * runtime variables, so nothing ever references itself, and every stack
-   * ends with generics so text can never fall back to a serif default.
-   *
-   *   font-poppins -> headings / course titles      (Poppins 600)
-   *   font-satoshi -> body, labels, buttons, metadata (Satoshi 400 + 500)
-   *   font-sans    -> Geist Sans (project default, unchanged)
-   *   font-mono    -> Geist Mono
-   *
-   * `var(--font-local-satoshi, "Satoshi")` keeps working before and after the
-   * local Satoshi files are added (see app/layout.tsx + app/fonts/README.md).
-   */
   --font-sans: var(--font-geist-sans, "Geist"), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono, "Geist Mono"), ui-monospace, monospace;
   --font-poppins: var(--font-google-poppins, "Poppins"), ui-sans-serif, system-ui, sans-serif;
   --font-satoshi: var(--font-local-satoshi, "Satoshi"), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-  /* Brand wordmark ("ByteSpace"). Local font, same mechanism as Satoshi. */
   --font-clash-display: var(--font-local-clash-display, "Clash Display"), ui-sans-serif, system-ui, sans-serif;
   /* Brand tokens */
   --color-brand-blue: #003BE2;
@@ -34,9 +14,18 @@
   --color-brand-white: #F5F5F6;
   --color-shuttle-gray-950: #242528;
   --color-shuttle-gray-200: #CED0D3;
-  /* Light gray band used by the partner logo strip (and courseCard chips) */
-  --color-shuttle-gray-50: #F5F6F7;
-  --color-electric-lime-400: #D4FB20;
+
+  --color-ink: #242528;
+  --color-body: #4b4c53;
+  --color-muted: #4f4f4f;
+  --color-brand: #003be2;
+  --color-lime: #d4fb20;
+  --color-lime-strong: #cbfc01;
+  --shadow-float: 51.038px 72.912px 72px 0px rgba(0, 0, 0, 0.13), 37.122px 53.032px 56px 0px rgba(0, 0, 0, 0.11),
+    25.838px 36.912px 36px 0px rgba(0, 0, 0, 0.1), 16.946px 24.209px 24px 0px rgba(0, 0, 0, 0.09),
+    10.208px 14.582px 16.087px 0px rgba(0, 0, 0, 0.08), 5.383px 7.69px 9.571px 0px rgba(0, 0, 0, 0.07),
+    2.233px 3.19px 5.723px 0px rgba(0, 0, 0, 0.06), 0.518px 0.741px 3.036px 0px rgba(0, 0, 0, 0.04);
+
 }
 
 :root {
@@ -49,15 +38,7 @@ body {
   color: var(--foreground);
 }
 
-/*
- * Hero/Navbar grid background.
- * Applied to the single shared wrapper in page.tsx that contains both
- * the Navbar and the HeroSection, creating one continuous grid from
- * the very top of the page.
- *
- * Grid size: 64px matches the Figma visual density.
- * Line opacity: 0.12 — subtle but visible against the blue.
- */
+
 .hero-grid {
   background-image:
     linear-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px),
@@ -65,8 +46,30 @@ body {
   background-size: 64px 64px;
 }
 
-/* Prevent horizontal overflow globally */
 html,
 body {
   overflow-x: hidden;
+}
+
+
+.cta-shape {
+  position: absolute;
+}
+
+.cta-shape__tint {
+  position: absolute;
+  inset: 0;
+  mask-image: var(--shape-mask);
+  mask-position: 0 0;
+  mask-repeat: no-repeat;
+  mask-size: 100% 100%;
+  mix-blend-mode: hard-light;
+}
+
+.cta-shape__tint--lime {
+  background: #d4fb20;
+}
+
+.cta-shape__tint--white {
+  background: #f5f5f6;
 }

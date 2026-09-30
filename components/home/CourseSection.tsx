@@ -6,7 +6,7 @@ import { CourseCategoryTabs } from "@/components/home/CourseCategoryTabs";
 import { COURSES, COURSE_CATEGORIES } from "@/components/data/data";
 import type { Course, CourseCategory } from "@/components/interfaces";
 
-/** Tab that shows every course; the other tabs filter by `course.categoryId`. */
+
 const FEATURED_ID = "featured";
 
 export interface CourseSectionProps extends React.HTMLAttributes<HTMLElement> {

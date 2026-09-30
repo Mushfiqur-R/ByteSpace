@@ -9,9 +9,7 @@ export interface RegisterFormValues {
 
 export interface RegisterCardProps
   extends Omit<React.HTMLAttributes<HTMLDivElement>, "onSubmit"> {
-  /** Called with the form values when the form is submitted */
   onSubmit?: (values: RegisterFormValues) => void;
-  /** Called when the "Login" button is clicked */
   onLoginClick?: () => void;
 }
 

@@ -2,6 +2,8 @@ import * as React from "react";
 
 export interface ByteLogoProps extends Omit<React.SVGProps<SVGSVGElement>, "fill"> {
   size?: number | string;
+  width?: number | string;
+  height?: number | string;
   color?: string;
   title?: string;
 }
@@ -10,16 +12,19 @@ export interface ByteLogoProps extends Omit<React.SVGProps<SVGSVGElement>, "fill
 const ASPECT_RATIO = 29 / 32;
 
 export const ByteLogo = React.forwardRef<SVGSVGElement, ByteLogoProps>(
-  ({ size = 32, color = "#D4FB20", title = "Byte", style, ...props }, ref) => {
-    const height = size;
-    const width =
-      typeof size === "number" ? Math.round(size * ASPECT_RATIO * 100) / 100 : `calc(${size} * ${ASPECT_RATIO})`;
+  ({ size = 32, width, height, color = "#D4FB20", title = "Byte", style, ...props }, ref) => {
+    const resolvedHeight = height ?? size;
+    const resolvedWidth =
+      width ??
+      (typeof resolvedHeight === "number"
+        ? Math.round(resolvedHeight * ASPECT_RATIO * 100) / 100
+        : `calc(${resolvedHeight} * ${ASPECT_RATIO})`);
 
     return (
       <svg
         ref={ref}
-        width={width}
-        height={height}
+        width={resolvedWidth}
+        height={resolvedHeight}
         viewBox="0 0 29 32"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

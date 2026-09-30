@@ -3,6 +3,9 @@ import HeroSection from "@/components/home/HeroSection";
 import LogoPartner from "@/components/home/PartnerCart";
 import { CourseSection } from "@/components/home/CourseSection";
 import { CategoriesSection } from "@/components/home/CategoriesSection";
+import CoursesShowcase from "@/components/home/CoursesShowcase";
+import CreatorCta from "@/components/home/CreatorCta";
+import Testimonials from "@/components/home/Testimonials";
 import { PARTNER_LOGOS } from "@/components/data/data";
 
 export default function Home() {
@@ -19,6 +22,12 @@ export default function Home() {
       <CourseSection />
 
       <CategoriesSection />
+
+      <CoursesShowcase />
+
+      <CreatorCta />
+
+      <Testimonials />
     </main>
   );
 }

@@ -11,14 +11,6 @@ export interface CategoriesSectionProps
   description?: string;
 }
 
-/**
- * "Explore Diverse Learning Paths" section.
- *
- * Renders the heading block plus one `CategoryCard` per entry of the category
- * data array (no per-card markup is duplicated). The grid is responsive:
- * 2 columns on phones, 3 on tablets and all 6 in a single row on desktop,
- * where the cards reach their full 167px size.
- */
 export const CategoriesSection = ({
   categories = CATEGORY_DATA,
   heading = "Explore Diverse Learning Paths at Bytespace",

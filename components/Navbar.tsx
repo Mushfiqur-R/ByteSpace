@@ -1,13 +1,17 @@
 "use client";
 import * as React from "react";
 import { useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import ByteLogo from "./Icons/nav/bytelogo";
 import CartLogo from "./Icons/nav/cartlogo";
 
 export interface NavItem {
-  /** Unique id, also used to match `activeId` */
+  /** Unique id, also used to match `activeId` when there is no `href` */
   id: string;
   label: string;
+  /** When set the item renders as a `next/link` and lights up from the URL */
+  href?: string;
   onClick?: () => void;
 }
 
@@ -20,8 +24,8 @@ export interface NavbarProps extends React.HTMLAttributes<HTMLElement> {
 }
 
 const DEFAULT_LINKS: NavItem[] = [
-  { id: "home", label: "Home" },
-  { id: "courses", label: "Courses" },
+  { id: "home", label: "Home", href: "/" },
+  { id: "courses", label: "Courses", href: "/courses" },
   { id: "creators", label: "Creators" },
 ];
 
@@ -40,6 +44,9 @@ export const Navbar = ({
   ...props
 }: NavbarProps) => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const pathname = usePathname();
+
+  const isActive = ({ id, href }: NavItem) => (href ? pathname === href : id === activeId);
 
   return (
     <header
@@ -64,20 +71,34 @@ export const Navbar = ({
         {/* Center nav — hidden on mobile */}
         <nav aria-label="Primary navigation" className="hidden md:block">
           <ul className="flex items-center gap-8">
-            {links.map(({ id, label, onClick }) => {
-              const active = id === activeId;
+            {links.map((item) => {
+              const { id, label, href, onClick } = item;
+              const active = isActive(item);
+              const itemClass = `text-sm leading-[160%] cursor-pointer hover:opacity-80 transition-opacity ${
+                active ? "font-semibold" : "font-normal"
+              }`;
+
               return (
                 <li key={id}>
-                  <button
-                    type="button"
-                    onClick={onClick}
-                    aria-current={active ? "page" : undefined}
-                    className={`text-sm leading-[160%] cursor-pointer hover:opacity-80 transition-opacity ${
-                      active ? "font-semibold" : "font-normal"
-                    }`}
-                  >
-                    {label}
-                  </button>
+                  {href ? (
+                    <Link
+                      href={href}
+                      onClick={onClick}
+                      aria-current={active ? "page" : undefined}
+                      className={`inline-block ${itemClass}`}
+                    >
+                      {label}
+                    </Link>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={onClick}
+                      aria-current={active ? "page" : undefined}
+                      className={itemClass}
+                    >
+                      {label}
+                    </button>
+                  )}
                 </li>
               );
             })}
@@ -137,23 +158,40 @@ export const Navbar = ({
         <div className="md:hidden bg-[#003BE2] border-t border-white/10 px-6 pb-6">
           <nav aria-label="Mobile navigation">
             <ul className="flex flex-col gap-4 pt-4">
-              {links.map(({ id, label, onClick }) => {
-                const active = id === activeId;
+              {links.map((item) => {
+                const { id, label, href, onClick } = item;
+                const active = isActive(item);
+                const itemClass = `text-base leading-[160%] cursor-pointer hover:opacity-80 transition-opacity ${
+                  active ? "font-semibold" : "font-normal"
+                }`;
+
                 return (
                   <li key={id}>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        onClick?.();
-                        setMobileOpen(false);
-                      }}
-                      aria-current={active ? "page" : undefined}
-                      className={`text-base leading-[160%] cursor-pointer hover:opacity-80 transition-opacity ${
-                        active ? "font-semibold" : "font-normal"
-                      }`}
-                    >
-                      {label}
-                    </button>
+                    {href ? (
+                      <Link
+                        href={href}
+                        onClick={() => {
+                          onClick?.();
+                          setMobileOpen(false);
+                        }}
+                        aria-current={active ? "page" : undefined}
+                        className={`inline-block ${itemClass}`}
+                      >
+                        {label}
+                      </Link>
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={() => {
+                          onClick?.();
+                          setMobileOpen(false);
+                        }}
+                        aria-current={active ? "page" : undefined}
+                        className={itemClass}
+                      >
+                        {label}
+                      </button>
+                    )}
                   </li>
                 );
               })}

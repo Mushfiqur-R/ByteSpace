@@ -33,5 +33,20 @@ export interface Course {
   categoryId: string;
   image: string;
   imageAlt?: string;
+  /** Icon rendered inside the difficulty chip, e.g. `/assets/home/49c4e.svg`. */
+  difficultyIcon?: string;
+  /** Star rendered next to the rating, e.g. `/assets/home/652e6.svg`. */
+  ratingIcon?: string;
+  /** Face used by the "+N" learners badge, e.g. `/assets/home/95600.svg`. */
+  moreAvatarUrl?: string;
   learners?: CourseLearner[];
+}
+
+export interface Testimonial {
+  name: string;
+  role: string;
+  /** Avatar path, e.g. `/assets/home/b6932.png`. */
+  image: string;
+  /** Quote as authored, including its surrounding quotation marks. */
+  quote: string;
 }

@@ -7,15 +7,6 @@ export interface CategoryCardProps extends React.HTMLAttributes<HTMLDivElement> 
   icon: React.ReactNode;
 }
 
-/**
- * Square category tile used by `CategoriesSection`.
- *
- * Visual spec: 167x167 card, 1px #CED0D3 border, 24px radius, a 60x60 lime
- * disc holding a ~36x36 icon, then the category name.
- *
- * The icon is never hardcoded here: it comes through props, so replacing the
- * artwork only means changing the `icon` value in `components/data/data.tsx`.
- */
 export const CategoryCard = ({
   name,
   icon,
