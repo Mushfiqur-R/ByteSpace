@@ -1,26 +1,75 @@
 @import "tailwindcss";
 
+@theme inline {
+  --color-background: #ffffff;
+  --color-foreground: #171717;
+  --font-sans: var(--font-geist-sans, "Geist"), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono, "Geist Mono"), ui-monospace, monospace;
+  --font-poppins: var(--font-google-poppins, "Poppins"), ui-sans-serif, system-ui, sans-serif;
+  --font-satoshi: var(--font-local-satoshi, "Satoshi"), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-clash-display: var(--font-local-clash-display, "Clash Display"), ui-sans-serif, system-ui, sans-serif;
+  /* Brand tokens */
+  --color-brand-blue: #003BE2;
+  --color-brand-lime: #D4FB20;
+  --color-brand-white: #F5F5F6;
+  --color-shuttle-gray-950: #242528;
+  --color-shuttle-gray-200: #CED0D3;
+
+  --color-ink: #242528;
+  --color-body: #4b4c53;
+  --color-muted: #4f4f4f;
+  --color-brand: #003be2;
+  --color-lime: #d4fb20;
+  --color-lime-strong: #cbfc01;
+  --shadow-float: 51.038px 72.912px 72px 0px rgba(0, 0, 0, 0.13), 37.122px 53.032px 56px 0px rgba(0, 0, 0, 0.11),
+    25.838px 36.912px 36px 0px rgba(0, 0, 0, 0.1), 16.946px 24.209px 24px 0px rgba(0, 0, 0, 0.09),
+    10.208px 14.582px 16.087px 0px rgba(0, 0, 0, 0.08), 5.383px 7.69px 9.571px 0px rgba(0, 0, 0, 0.07),
+    2.233px 3.19px 5.723px 0px rgba(0, 0, 0, 0.06), 0.518px 0.741px 3.036px 0px rgba(0, 0, 0, 0.04);
+
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.hero-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.12) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+html,
+body {
+  overflow-x: hidden;
+}
+
+
+.cta-shape {
+  position: absolute;
+}
+
+.cta-shape__tint {
+  position: absolute;
+  inset: 0;
+  mask-image: var(--shape-mask);
+  mask-position: 0 0;
+  mask-repeat: no-repeat;
+  mask-size: 100% 100%;
+  mix-blend-mode: hard-light;
+}
+
+.cta-shape__tint--lime {
+  background: #d4fb20;
+}
+
+.cta-shape__tint--white {
+  background: #f5f5f6;
 }
