@@ -10,15 +10,10 @@ export interface CourseCardProps
 
 const MAX_AVATARS = 4;
 
-/** `17` -> "17 Lessons", `1` -> "1 Lesson". */
 const pluralize = (count: number, singular: string) =>
   `${count} ${singular}${count === 1 ? "" : "s"}`;
 
-/**
- * Splits a display price so the currency mark and the amount can each carry
- * their own font weight (Figma: "$" 500 / "25" 600).
- * `"$25"` -> `{ currency: "$", amount: "25" }`, `"Free"` -> currency only.
- */
+
 const splitPrice = (price: string) => {
   const match = /^(\D*)(.*)$/.exec(price);
   return { currency: match?.[1] ?? "", amount: match?.[2] ?? "" };

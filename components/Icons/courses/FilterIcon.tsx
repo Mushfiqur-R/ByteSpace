@@ -1,29 +1,20 @@
+
 import type { SVGProps } from "react";
 
-/** Sliders mark used by the courses page "Filter" pill. */
 export const FilterIcon = (props: SVGProps<SVGSVGElement>) => (
   <svg
     width="24"
     height="24"
     viewBox="0 0 24 24"
     fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
     xmlns="http://www.w3.org/2000/svg"
     aria-hidden="true"
     {...props}
   >
-    <path d="M21 4h-7" />
-    <path d="M10 4H3" />
-    <path d="M21 12h-9" />
-    <path d="M8 12H3" />
-    <path d="M21 20h-5" />
-    <path d="M12 20H3" />
-    <path d="M14 2v4" />
-    <path d="M8 10v4" />
-    <path d="M16 18v4" />
+    <path
+      d="M7.00506 6H17.0051L11.9951 12.3L7.00506 6ZM4.25506 5.61C6.27506 8.2 10.0051 13 10.0051 13V19C10.0051 19.55 10.4551 20 11.0051 20H13.0051C13.5551 20 14.0051 19.55 14.0051 19V13C14.0051 13 17.7251 8.2 19.7451 5.61C20.2551 4.95 19.7851 4 18.9551 4H5.04506C4.21506 4 3.74506 4.95 4.25506 5.61Z"
+      fill="currentColor"
+    />
   </svg>
 );
 
