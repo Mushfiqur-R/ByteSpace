@@ -253,7 +253,7 @@ const COURSE_PAGE_COVERS = [
   `${homeAssets}/courseCard4.jpg`,
   `${homeAssets}/courseCard2.jpg`,
   `${homeAssets}/courseCard4.jpg`,
-  `${homeAssets}/coursecard3.jpg`,
+  `${homeAssets}/courseCard3.jpg`,
   `${homeAssets}/courseCard2.jpg`,
   `${homeAssets}/courseCard3.jpg`,
   `${homeAssets}/courseCard2.jpg`,
