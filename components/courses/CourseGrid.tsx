@@ -1,4 +1,5 @@
 import type { HTMLAttributes } from "react";
+import Link from "next/link";
 import CourseCard from "@/components/home/courseCard";
 import type { Course } from "@/components/interfaces";
 
@@ -14,7 +15,10 @@ export const CourseGrid = ({ courses, className = "", ...props }: CourseGridProp
   >
     {courses.map((course) => (
       <li key={course.id} className="flex w-full justify-center">
-        <CourseCard {...course} />
+        {/* The card itself is unchanged — the link is a wrapper around it. */}
+        <Link href={`/courses/${course.id}`} className="block w-full max-w-[373px]">
+          <CourseCard {...course} />
+        </Link>
       </li>
     ))}
   </ul>

@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import Link from "next/link";
 import CourseCard from "@/components/home/courseCard";
 import { CourseCategoryTabs } from "@/components/home/CourseCategoryTabs";
 import { COURSES, COURSE_CATEGORIES } from "@/components/data/data";
@@ -38,7 +39,7 @@ export const CourseSection = ({
       className={`w-full bg-white ${className}`}
       {...props}
     >
-      <div className="mx-auto w-full max-w-[1200px] px-6 py-16 sm:px-8 sm:py-20 lg:py-24">
+      <div className="mx-auto w-full max-w-[1200px] px-6 py-10 sm:px-8 sm:py-10 lg:py-10">
         {/* Heading + description */}
         <div className="flex flex-col items-center text-center">
           <h2
@@ -66,7 +67,10 @@ export const CourseSection = ({
           <ul className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
             {visibleCourses.map((course) => (
               <li key={course.id} className="flex w-full justify-center">
-                <CourseCard {...course} />
+                {/* The card itself is unchanged — the link is a wrapper around it. */}
+                <Link href={`/courses/${course.id}`} className="block w-full max-w-[373px]">
+                  <CourseCard {...course} />
+                </Link>
               </li>
             ))}
           </ul>

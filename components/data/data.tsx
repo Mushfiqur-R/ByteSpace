@@ -4,7 +4,7 @@ import ReactLogo from "../Icons/home/ReactLogo";
 import SunburstLogo from "../Icons/home/SunburstLogo";
 import TailwindLogo from "../Icons/home/Tailwindlogo";
 import BoltLogo from "../Icons/nav/BoltLogo";
-import type { Category, Course, CourseCategory, CourseLearner, Testimonial } from "../interfaces";
+import type { Category, Course, CourseCategory, CourseLearner, Creator, Testimonial } from "../interfaces";
 import type { Partner } from "../home/PartnerCart";
 import type { HappyStudentStats, HappyStudentAvatar } from "../home/HappyStudentCart";
 
@@ -171,6 +171,29 @@ export const COURSES: Course[] = [
     // moreAvatarUrl: COURSE_CARD_ASSETS.moreAvatar,
     /* 12 learners -> 4 avatars + a "+8" badge. */
     learners: makeLearners("c3", 12, COURSE_CARD_ASSETS.learnerAvatars),
+  },
+];
+
+/* Creators */
+
+/** The studio's face doubles as the instructor avatar in the course sidebar. */
+const CREATOR_AVATAR = "/assets/courseDetails/3bfea.png";
+
+export const CREATORS: Creator[] = [
+  {
+    id: "creator-1",
+    slug: "purepearl-studio",
+    name: "PurePearl Studio",
+    badge: "Popular",
+    tagline: "Passionate UI/UX, Web designer",
+    bio: [
+      "I'm Pearl, the designer behind PurePearl Studio. For the past six years I've helped startups and small studios turn rough ideas into calm, usable interfaces — from the first wireframe to the shipped product.",
+      "On ByteSpace I teach the exact process I use with clients: how to research, sketch, build a design system and hand work to developers without losing the details. No fluff — just the methods that survive real deadlines.",
+    ],
+    avatar: CREATOR_AVATAR,
+    products: 3,
+    followers: 12,
+    following: false,
   },
 ];
 

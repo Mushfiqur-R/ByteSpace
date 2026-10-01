@@ -26,7 +26,8 @@ export interface NavbarProps extends React.HTMLAttributes<HTMLElement> {
 const DEFAULT_LINKS: NavItem[] = [
   { id: "home", label: "Home", href: "/" },
   { id: "courses", label: "Courses", href: "/courses" },
-  { id: "creators", label: "Creators" },
+  /* No `/creators` index page yet — clicking this lands on app/not-found.tsx. */
+  { id: "creators", label: "Creators", href: "/creators" },
 ];
 
 const DEFAULT_ACTIONS: NavItem[] = [
@@ -46,30 +47,36 @@ export const Navbar = ({
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
 
-  const isActive = ({ id, href }: NavItem) => (href ? pathname === href : id === activeId);
+  /* An item with an `href` follows the URL (nested paths included, e.g.
+     `/creators/purepearl-studio` keeps "Creators" lit); otherwise fall back to
+     the explicitly passed `activeId`. */
+  const isActive = ({ id, href }: NavItem) =>
+    href ? pathname === href || (href !== "/" && pathname.startsWith(`${href}/`)) : id === activeId;
 
   return (
     <header
       className={`w-full bg-transparent text-[#F5F5F6] font-satoshi relative z-50 ${className}`}
       {...props}
     >
-      {/* Desktop / Tablet bar */}
-      <div className="flex items-center justify-between h-[72px] px-6 sm:px-10 lg:px-[120px]">
+      {/* Desktop / Tablet bar — logo left, links centred, actions on the right.
+          Three columns of equal weight keep the links in the middle of the bar
+          whatever the logo or the cart button end up measuring. */}
+      <div className="grid h-[72px] grid-cols-[1fr_auto_1fr] items-center px-6 sm:px-10 lg:px-[120px]">
         {/* Logo */}
         <button
           type="button"
           onClick={onLogoClick}
           aria-label="ByteSpace home"
-          className="flex items-center gap-2 cursor-pointer flex-shrink-0"
+          className="col-start-1 flex items-center gap-2 justify-self-start cursor-pointer flex-shrink-0"
         >
           <ByteLogo size={28} />
-          <span className="font-clash-display font-bold text-xl leading-[120%]">
+          <span className="font-clash-display font-extrabold text-xl leading-[120%]">
             ByteSpace
           </span>
         </button>
 
         {/* Center nav — hidden on mobile */}
-        <nav aria-label="Primary navigation" className="hidden md:block">
+        <nav aria-label="Primary navigation" className="col-start-2 hidden justify-self-center md:block">
           <ul className="flex items-center gap-8">
             {links.map((item) => {
               const { id, label, href, onClick } = item;
@@ -106,7 +113,7 @@ export const Navbar = ({
         </nav>
 
         {/* Right actions — hidden on mobile */}
-        <div className="hidden md:flex items-center gap-6">
+        <div className="col-start-3 hidden items-center gap-6 justify-self-end md:flex">
           {actions.map(({ id, label, onClick }) => (
             <button
               key={id}
@@ -130,7 +137,7 @@ export const Navbar = ({
         {/* Hamburger — mobile only */}
         <button
           type="button"
-          className="md:hidden flex flex-col gap-1.5 cursor-pointer p-1"
+          className="col-start-3 flex flex-col gap-1.5 justify-self-end cursor-pointer p-1 md:hidden"
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
           aria-expanded={mobileOpen}
           onClick={() => setMobileOpen((v) => !v)}
