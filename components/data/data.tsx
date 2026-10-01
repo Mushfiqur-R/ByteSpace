@@ -150,12 +150,11 @@ export const COURSES: Course[] = [
     price: "$25",
     rating: 4.5,
     categoryId: "creative-marketing",
-    image: "/assets/home/courseCard4.jpg",
+    image: "/assets/home/CourseCard4.jpg",
     imageAlt: "Build Digital Asset course cover",
     difficultyIcon: COURSE_CARD_ASSETS.difficultyIcon,
     ratingIcon: COURSE_CARD_ASSETS.ratingIcon,
-    // moreAvatarUrl: COURSE_CARD_ASSETS.moreAvatar,
-    /* 8 learners -> 4 avatars + a "+4" badge. */
+
     learners: makeLearners("c2", 8, COURSE_CARD_ASSETS.learnerAvatars),
   },
   {
@@ -181,7 +180,7 @@ export const COURSES: Course[] = [
 
 /* Creators */
 
-/** The studio's face doubles as the instructor avatar in the course sidebar. */
+
 const CREATOR_AVATAR = "/assets/courseDetails/3bfea.png";
 
 export const CREATORS: Creator[] = [

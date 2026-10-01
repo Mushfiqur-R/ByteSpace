@@ -8,7 +8,6 @@ import { CourseCategoryTabs } from "@/components/home/CourseCategoryTabs";
 import { COURSE_PAGE_CATEGORIES, COURSE_PAGE_COURSES } from "@/components/data/data";
 import type { Course, CourseCategory } from "@/components/interfaces";
 
-/** Chip that shows every course; the others filter by `course.categoryId`. */
 const FEATURED_ID = "featured";
 
 /** Cards per page — 2 full rows of the 3-column desktop grid. */
@@ -19,11 +18,7 @@ export interface CoursesCatalogProps extends HTMLAttributes<HTMLDivElement> {
   courses?: Course[];
 }
 
-/**
- * Chips row + grid + pagination. Kept in one client component so the selected
- * category can filter the grid, and the page count can follow the result set,
- * without turning the page into a client page.
- */
+
 export const CoursesCatalog = ({
   categories = COURSE_PAGE_CATEGORIES,
   courses = COURSE_PAGE_COURSES,
