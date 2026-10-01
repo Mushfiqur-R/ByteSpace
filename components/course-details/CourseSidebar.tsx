@@ -1,4 +1,5 @@
 import type { HTMLAttributes } from "react";
+import Button from "@/components/creators-profile/Button";
 import type { CourseDetails, CoursePageContent } from "@/components/interfaces";
 
 /**
@@ -97,12 +98,17 @@ export const CourseSidebar = ({
           </div>
         </div>
         <p className="leading-[1.6] text-slate">{instructor.blurb}</p>
-        <a
-          href="#"
-          className="rounded-3xl border border-line px-4 py-2 font-medium leading-[1.2] text-slate transition hover:bg-mist"
-        >
-          See Full Profile
-        </a>
+        {instructor.slug ? (
+          /* Shared pill from components/creators-profile/Button — links to the
+             creator's profile page. */
+          <Button href={`/creators/${instructor.slug}`} variant="outline">
+            See Full Profile
+          </Button>
+        ) : (
+          <span className="rounded-3xl border border-line px-4 py-2 font-medium leading-[1.2] text-slate">
+            See Full Profile
+          </span>
+        )}
       </div>
     </aside>
   );

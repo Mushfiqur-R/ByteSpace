@@ -26,7 +26,8 @@ export interface NavbarProps extends React.HTMLAttributes<HTMLElement> {
 const DEFAULT_LINKS: NavItem[] = [
   { id: "home", label: "Home", href: "/" },
   { id: "courses", label: "Courses", href: "/courses" },
-  { id: "creators", label: "Creators" },
+  /* No `/creators` index page yet — clicking this lands on app/not-found.tsx. */
+  { id: "creators", label: "Creators", href: "/creators" },
 ];
 
 const DEFAULT_ACTIONS: NavItem[] = [
@@ -46,7 +47,11 @@ export const Navbar = ({
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
 
-  const isActive = ({ id, href }: NavItem) => (href ? pathname === href : id === activeId);
+  /* An item with an `href` follows the URL (nested paths included, e.g.
+     `/creators/purepearl-studio` keeps "Creators" lit); otherwise fall back to
+     the explicitly passed `activeId`. */
+  const isActive = ({ id, href }: NavItem) =>
+    href ? pathname === href || (href !== "/" && pathname.startsWith(`${href}/`)) : id === activeId;
 
   return (
     <header

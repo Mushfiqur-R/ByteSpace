@@ -96,6 +96,8 @@ export interface CourseInstructor {
   role: string;
   avatarUrl: string;
   blurb: string;
+  /** Creator profile the "See Full Profile" link points at, e.g. `"purepearl-studio"`. */
+  slug?: string;
 }
 
 /**
@@ -198,4 +200,25 @@ export interface Testimonial {
   image: string;
   /** Quote as authored, including its surrounding quotation marks. */
   quote: string;
+}
+
+/** A course creator, as shown on the profile page (`/creators/[slug]`). */
+export interface Creator {
+  id: string;
+  /** URL segment used by `/creators/[slug]`. */
+  slug: string;
+  name: string;
+  /** Small highlight rendered next to the name, e.g. `"Popular"`. */
+  badge: string;
+  /** One-line role summary under the name, e.g. `"Passionate UI/UX, Web designer"`. */
+  tagline: string;
+  /** Bio paragraphs, rendered in order. */
+  bio: string[];
+  /** Avatar path, e.g. `/assets/courseDetails/3bfea.png`. */
+  avatar: string;
+  /** Published courses shown as the "Products" statistic. */
+  products: number;
+  followers: number;
+  /** Whether the viewer already follows the creator. */
+  following: boolean;
 }

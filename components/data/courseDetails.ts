@@ -11,6 +11,7 @@ import type {
   CourseStat,
 } from "../interfaces";
 import { COURSES, COURSE_CATEGORIES, COURSE_PAGE_COURSES, TESTIMONIALS } from "./data";
+import { getCreatorByInstructor } from "./creators";
 import CheckCircleIcon from "../Icons/course-details/CheckCircleIcon";
 import NewsIcon from "../Icons/course-details/NewsIcon";
 import PlayCircleIcon from "../Icons/course-details/PlayCircleIcon";
@@ -260,6 +261,7 @@ export const getCoursePageContent = (course: CourseDetails): CoursePageContent =
         learnerCount > 0
           ? `${course.instructor} teaches ${pluralize(course.lessons, "lesson")} to ${pluralize(learnerCount, "learner")} on ByteSpace.`
           : `${course.instructor} teaches ${pluralize(course.lessons, "lesson")} on ByteSpace.`,
+      slug: getCreatorByInstructor(course.instructor)?.slug,
     },
     enrollNote: "Ready to Dive In? Enroll Now and Start Building Your Digital Future!",
     tabContent: {
