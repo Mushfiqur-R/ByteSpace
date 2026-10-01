@@ -50,12 +50,11 @@ const getCourseStats = (course: Course): CourseStat[] => [
     id: "students",
     label: `${course.learners?.length ?? 0} Students`,
     Icon: UsersIcon,
-    /* UsersIcon defaults to brand blue, so it is pointed at the text colour. */
+   
     iconProps: { color: "currentColor" },
   },
 ];
 
-/** Looks a course up across both lists and hydrates it for the details page. */
 export const getCourseById = (id: string): CourseDetails | undefined => {
   const course = ALL_COURSES.find((item) => item.id === id);
   if (!course) return undefined;
@@ -68,7 +67,7 @@ export const getCourseById = (id: string): CourseDetails | undefined => {
   };
 };
 
-/** Ids used by `generateStaticParams` in app/courses/[id]/page.tsx. */
+
 export const getAllCourseIds = (): string[] => ALL_COURSES.map(({ id }) => id);
 
 /** Figma exports that belong to this page, in `public/assets/courseDetails/`. */
@@ -164,13 +163,13 @@ const LESSONS_TAB_COPY = {
     "Witness your growth as you complete lessons, with an intuitive progress tracking feature guiding you through your learning journey.",
 };
 
-/** Completed share the Lessons tab's progress card shows — the Figma frame's 55. */
+
 const PROGRESS_PERCENT = 55;
 
 
 const RATING_WEIGHTS = [0.62, 0.24, 0.08, 0.04, 0.02];
 
-/** Stars given by each reused testimonial — one entry per review. */
+
 const REVIEW_STARS = [5, 5, 4];
 
 /** How long ago each reused testimonial was written. */

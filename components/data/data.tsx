@@ -150,12 +150,11 @@ export const COURSES: Course[] = [
     price: "$25",
     rating: 4.5,
     categoryId: "creative-marketing",
-    image: "/assets/home/courseCard4.jpg",
+    image: "/assets/home/CourseCard4.jpg",
     imageAlt: "Build Digital Asset course cover",
     difficultyIcon: COURSE_CARD_ASSETS.difficultyIcon,
     ratingIcon: COURSE_CARD_ASSETS.ratingIcon,
-    // moreAvatarUrl: COURSE_CARD_ASSETS.moreAvatar,
-    /* 8 learners -> 4 avatars + a "+4" badge. */
+
     learners: makeLearners("c2", 8, COURSE_CARD_ASSETS.learnerAvatars),
   },
   {
@@ -181,7 +180,7 @@ export const COURSES: Course[] = [
 
 /* Creators */
 
-/** The studio's face doubles as the instructor avatar in the course sidebar. */
+
 const CREATOR_AVATAR = "/assets/courseDetails/3bfea.png";
 
 export const CREATORS: Creator[] = [
@@ -248,18 +247,18 @@ export const COURSE_PAGE_CATEGORIES: CourseCategory[] = COURSE_PAGE_CATEGORY_IDS
 /** Cover images the catalogue cards cycle through. */
 const COURSE_PAGE_COVERS = [
   `${homeAssets}/670ab.png`,
-  "/assets/hero/courseCard4.jpg",
+  "/assets/hero/CourseCard4.jpg",
   `${homeAssets}/courseCard3.jpg`,
-  `${homeAssets}/courseCard4.jpg`,
+  `${homeAssets}/CourseCard4.jpg`,
   `${homeAssets}/courseCard2.jpg`,
-  `${homeAssets}/courseCard4.jpg`,
-  `${homeAssets}/courseCard3.jpg`,
-  `${homeAssets}/courseCard2.jpg`,
+  `${homeAssets}/CourseCard4.jpg`,
   `${homeAssets}/courseCard3.jpg`,
   `${homeAssets}/courseCard2.jpg`,
-  `${homeAssets}/courseCard4.jpg`,
+  `${homeAssets}/courseCard3.jpg`,
   `${homeAssets}/courseCard2.jpg`,
-  `${homeAssets}/courseCard4.jpg`,
+  `${homeAssets}/CourseCard4.jpg`,
+  `${homeAssets}/courseCard2.jpg`,
+  `${homeAssets}/CourseCard4.jpg`,
   `${homeAssets}/courseCard3.jpg`,
   `${homeAssets}/courseCard2.jpg`,
 ] as const;
