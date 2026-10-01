@@ -89,7 +89,6 @@ const PAGE_MEDIA = {
 const pluralize = (count: number, singular: string) =>
   `${count} ${singular}${count === 1 ? "" : "s"}`;
 
-/** "2 hours 16 mins" -> 136. Falls back to 0 when the copy can't be read. */
 const toMinutes = (duration: string) => {
   const hours = Number(/(\d+)\s*hour/i.exec(duration)?.[1] ?? 0);
   const minutes = Number(/(\d+)\s*min/i.exec(duration)?.[1] ?? 0);

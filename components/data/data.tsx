@@ -7,6 +7,11 @@ import BoltLogo from "../Icons/nav/BoltLogo";
 import type { Category, Course, CourseCategory, CourseLearner, Creator, FooterColumn, Testimonial } from "../interfaces";
 import type { Partner } from "../home/PartnerCart";
 import type { HappyStudentStats, HappyStudentAvatar } from "../home/HappyStudentCart";
+import VideoIcon from "../Icons/course-details/VideoIcon";
+import WalkingIcon from "../Icons/course-details/WalkingIcon";
+import CodeIcon from "../Icons/home/CodeIcon";
+import MonitorIcon from "../Icons/home/Monitoricon";
+import BusinessIcon from "../Icons/home/BusinessIcon";
 
 const cls = "h-9 w-9";
 
@@ -14,11 +19,11 @@ const homeAssets = "/assets/home";
 
 export const data: Category[] = [
   { id: 1, name: "Design", icon: <DesignIcon className={cls} /> },
-  { id: 2, name: "Development", icon: <DesignIcon className={cls} /> },
-  { id: 3, name: "IT & Software", icon: <DesignIcon className={cls} /> },
-  { id: 4, name: "Business", icon: <DesignIcon className={cls} /> },
-  { id: 5, name: "Marketing", icon: <DesignIcon className={cls} /> },
-  { id: 6, name: "Photography", icon: <DesignIcon className={cls} /> },
+  { id: 2, name: "Development", icon: <CodeIcon className={cls} /> },
+  { id: 3, name: "IT & Software", icon: <MonitorIcon className={cls} /> },
+  { id: 4, name: "Business", icon: <BusinessIcon className={cls} /> },
+  { id: 5, name: "Marketing", icon: <WalkingIcon className={cls} /> },
+  { id: 6, name: "Photography", icon: <VideoIcon className={cls} /> },
 ];
 
 
@@ -145,7 +150,7 @@ export const COURSES: Course[] = [
     price: "$25",
     rating: 4.5,
     categoryId: "creative-marketing",
-    image: "/assets/hero/courseCard1.png",
+    image: "/assets/home/courseCard4.jpg",
     imageAlt: "Build Digital Asset course cover",
     difficultyIcon: COURSE_CARD_ASSETS.difficultyIcon,
     ratingIcon: COURSE_CARD_ASSETS.ratingIcon,
@@ -164,7 +169,7 @@ export const COURSES: Course[] = [
     price: "$25",
     rating: 4.5,
     categoryId: "marketing",
-    image: "/assets/hero/courseCard1.png",
+    image: "/assets/home/courseCard2.jpg",
     imageAlt: "the Power of Big Data course cover",
     difficultyIcon: COURSE_CARD_ASSETS.difficultyIcon,
     ratingIcon: COURSE_CARD_ASSETS.ratingIcon,
@@ -243,20 +248,20 @@ export const COURSE_PAGE_CATEGORIES: CourseCategory[] = COURSE_PAGE_CATEGORY_IDS
 /** Cover images the catalogue cards cycle through. */
 const COURSE_PAGE_COVERS = [
   `${homeAssets}/670ab.png`,
-  "/assets/hero/courseCard1.png",
-  `${homeAssets}/e3a78.png`,
-  `${homeAssets}/af9cb.png`,
-  `${homeAssets}/eb4eb.png`,
-  `${homeAssets}/41fc0.png`,
-  `${homeAssets}/8a604.png`,
-  `${homeAssets}/5713a.png`,
-  `${homeAssets}/682df.png`,
-  `${homeAssets}/68643.png`,
-  `${homeAssets}/82ebe.png`,
-  `${homeAssets}/dc30f.png`,
-  `${homeAssets}/dc547.png`,
-  `${homeAssets}/e89fa.png`,
-  `${homeAssets}/b8b88.png`,
+  "/assets/hero/courseCard4.jpg",
+  `${homeAssets}/coursecard3.jpg`,
+  `${homeAssets}/courseCard4.jpg`,
+  `${homeAssets}/courseCard2.jpg`,
+  `${homeAssets}/courseCard4.jpg`,
+  `${homeAssets}/coursecard3.jpg`,
+  `${homeAssets}/courseCard2.jpg`,
+  `${homeAssets}/coursecard3.jpg`,
+  `${homeAssets}/courseCard2.jpg`,
+  `${homeAssets}/courseCard4.jpg`,
+  `${homeAssets}/courseCard2.jpg`,
+  `${homeAssets}/courseCard4.jpg`,
+  `${homeAssets}/coursecard3.jpg`,
+  `${homeAssets}/courseCard2.jpg`,
 ] as const;
 
 type CoursePageSeed = Pick<
