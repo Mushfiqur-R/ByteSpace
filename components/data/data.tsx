@@ -4,7 +4,7 @@ import ReactLogo from "../Icons/home/ReactLogo";
 import SunburstLogo from "../Icons/home/SunburstLogo";
 import TailwindLogo from "../Icons/home/Tailwindlogo";
 import BoltLogo from "../Icons/nav/BoltLogo";
-import type { Category, Course, CourseCategory, CourseLearner, Creator, Testimonial } from "../interfaces";
+import type { Category, Course, CourseCategory, CourseLearner, Creator, FooterColumn, Testimonial } from "../interfaces";
 import type { Partner } from "../home/PartnerCart";
 import type { HappyStudentStats, HappyStudentAvatar } from "../home/HappyStudentCart";
 
@@ -293,3 +293,35 @@ export const COURSE_PAGE_COURSES: Course[] = COURSE_PAGE_SEED.map((seed, index) 
   learners: makeLearners(`cp${index + 1}`, 6 + (index % 6) * 4, COURSE_CARD_ASSETS.learnerAvatars),
 }));
 
+export const DEFAULT_COLUMNS: FooterColumn[] = [
+  {
+    id: "browse",
+    items: [
+      { id: "featured-courses", label: "Featured Courses" },
+      { id: "featured-categories", label: "Featured Categories" },
+      { id: "business", label: "Business" },
+      { id: "it", label: "IT" },
+      { id: "design", label: "Design" },
+    ],
+  },
+  {
+    id: "topics",
+    items: [
+      { id: "development", label: "Development" },
+      { id: "marketing", label: "Marketing" },
+      { id: "photography", label: "Photography" },
+      { id: "finance", label: "Finance" },
+      { id: "sport", label: "Sport" },
+    ],
+  },
+  {
+    id: "platform",
+    items: [
+      { id: "become-a-creator", label: "Become a Creator" },
+      { id: "affiliate-program", label: "Affiliate Program" },
+      { id: "contact", label: "Contact" },
+      { id: "help", label: "Help" },
+      { id: "about", label: "About" },
+    ],
+  },
+];

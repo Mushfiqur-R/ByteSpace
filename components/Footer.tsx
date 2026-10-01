@@ -2,66 +2,10 @@
 import * as React from "react";
 import { useState } from "react";
 import ByteLogo from "./Icons/nav/bytelogo";
+import { FooterItem, FooterProps } from "./interfaces";
+import { DEFAULT_COLUMNS } from "./data/data";
 
-export interface FooterItem {
-  id: string;
-  label: string;
-  onClick?: () => void;
-}
-
-export interface FooterColumn {
-  id: string;
-  heading?: string;
-  items: FooterItem[];
-}
-
-export interface FooterProps extends React.HTMLAttributes<HTMLElement> {
-  /** Link columns on the right */
-  columns?: FooterColumn[];
-  /** Privacy Policy, Terms of Service, etc. */
-  legalLinks?: FooterItem[];
-  /** Called with the entered email when the newsletter form is submitted */
-  onSubscribe?: (email: string) => void;
-  /** Called when the logo is clicked */
-  onLogoClick?: () => void;
-  subscribeLabel?: string;
-}
-
-const DEFAULT_COLUMNS: FooterColumn[] = [
-  {
-    id: "browse",
-    heading: "Browse",
-    items: [
-      { id: "featured-courses", label: "Featured Courses" },
-      { id: "featured-categories", label: "Featured Categories" },
-      { id: "business", label: "Business" },
-      { id: "it", label: "IT" },
-      { id: "design", label: "Design" },
-    ],
-  },
-  {
-    id: "topics",
-    items: [
-      { id: "development", label: "Development" },
-      { id: "marketing", label: "Marketing" },
-      { id: "photography", label: "Photography" },
-      { id: "finance", label: "Finance" },
-      { id: "sport", label: "Sport" },
-    ],
-  },
-  {
-    id: "platform",
-    heading: "Platform",
-    items: [
-      { id: "become-a-creator", label: "Become a Creator" },
-      { id: "affiliate-program", label: "Affiliate Program" },
-      { id: "contact", label: "Contact" },
-      { id: "help", label: "Help" },
-      { id: "about", label: "About" },
-    ],
-  },
-];
-
+  
 const DEFAULT_LEGAL_LINKS: FooterItem[] = [
   { id: "privacy-policy", label: "Privacy Policy" },
   { id: "terms-of-service", label: "Terms of Service" },
@@ -86,11 +30,11 @@ export const Footer = ({
 
   return (
     <footer
-      className={`w-full bg-white border-t border-[#CED0D3] px-6 sm:px-10 lg:px-[120px] pt-12 sm:pt-16 lg:pt-[70px] pb-12 text-[#242528] font-satoshi ${className}`}
+      className={`w-full border-t border-line bg-white font-satoshi text-ink ${className}`}
       {...props}
     >
-      <div className="mx-auto w-full max-w-[1200px] flex flex-col gap-16 sm:gap-20 lg:gap-[130px]">
-        <div className="flex flex-col items-start gap-12 lg:flex-row lg:gap-[92px]">
+      <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-16 px-6 pt-12 pb-12 sm:px-10 sm:pt-16 lg:gap-[130px] lg:px-[120px] lg:pt-[71px]">
+        <div className="flex flex-col items-start gap-12 lg:flex-row lg:justify-between lg:gap-[92px]">
           <div className="w-full max-w-[528px] flex flex-col gap-10 sm:gap-12 lg:gap-[45px]">
             <div className="flex flex-col gap-4">
               <button
@@ -108,18 +52,18 @@ export const Footer = ({
             </div>
 
             <div className="flex w-full max-w-[504px] flex-col gap-6">
-              <form onSubmit={handleSubmit} className="flex items-start gap-6">
+              <form onSubmit={handleSubmit} className="flex flex-wrap items-start gap-4 sm:gap-6">
                 <input
                   type="email"
                   value={email}
                   onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
                   placeholder="Enter your email"
                   aria-label="Email address"
-                  className="h-[52px] w-full min-w-0 max-w-[376px] flex-1 rounded-full border border-[#CED0D3] bg-white px-6 py-[18px] text-base leading-[26px] text-[#242528] placeholder:text-[#242528] outline-none focus:border-[#242528]"
+                  className="h-[52px] w-full min-w-0 max-w-[376px] flex-1 rounded-full border border-line bg-white px-6 py-[18px] text-base leading-[26px] text-ink placeholder:text-ink outline-none focus:border-brand"
                 />
                 <button
                   type="submit"
-                  className="flex h-[46px] items-center justify-center rounded-3xl bg-[#D4FB20] px-6 py-3 text-lg font-medium leading-[22px] text-[#242528] cursor-pointer hover:brightness-95 transition"
+                  className="flex h-[46px] cursor-pointer items-center justify-center rounded-3xl bg-lime px-6 py-3 text-lg leading-[22px] font-medium text-ink transition hover:brightness-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
                 >
                   {subscribeLabel}
                 </button>
@@ -130,21 +74,20 @@ export const Footer = ({
             </div>
           </div>
 
-          <nav aria-label="Footer" className="flex w-full flex-wrap items-start gap-x-10 gap-y-10 lg:w-auto">
+          <nav
+            aria-label="Footer"
+            className="grid w-full grid-cols-2 gap-x-10 gap-y-10 sm:grid-cols-3 lg:w-[580px] lg:pt-12"
+          >
             {columns.map(({ id, heading, items }) => (
-              <div key={id} className="w-[140px] flex flex-col gap-6 sm:w-[167px]">
-                {heading ? (
-                  <h3 className="text-base leading-6 font-normal text-[#242528]">{heading}</h3>
-                ) : (
-                  <div aria-hidden="true" className="h-6" />
-                )}
-                <ul className="flex flex-col items-start gap-4">
+              <div key={id} className="flex flex-col gap-4">
+                {heading ? <h3 className="text-base leading-6 font-normal">{heading}</h3> : null}
+                <ul className="flex flex-col items-start gap-4 text-sm leading-[1.6]">
                   {items.map(({ id: itemId, label, onClick }) => (
                     <li key={itemId}>
                       <button
                         type="button"
                         onClick={onClick}
-                        className="text-left text-sm leading-[22px] cursor-pointer hover:opacity-70 transition-opacity"
+                        className="cursor-pointer text-left transition-opacity hover:opacity-70"
                       >
                         {label}
                       </button>
@@ -156,9 +99,8 @@ export const Footer = ({
           </nav>
         </div>
 
-        <div className="flex flex-col gap-6">
-          <hr className="border-0 border-t border-[#CED0D3]" />
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+        <div className="flex flex-col">
+          <div className="flex flex-col gap-4 border-t border-line pt-4 sm:flex-row sm:items-start sm:justify-between">
             <p className="text-xs leading-[19px]">© {new Date().getFullYear()} ByteSpace. All rights reserved.</p>
             <ul className="flex flex-wrap items-start gap-x-6 gap-y-2">
               {legalLinks.map(({ id, label, onClick }) => (

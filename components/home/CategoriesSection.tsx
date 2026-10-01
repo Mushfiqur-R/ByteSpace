@@ -5,7 +5,6 @@ import type { Category } from "@/components/interfaces";
 
 export interface CategoriesSectionProps
   extends React.HTMLAttributes<HTMLElement> {
-  /** Cards to render — defaults to the category data array */
   categories?: Category[];
   heading?: string;
   description?: string;
